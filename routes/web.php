@@ -1,10 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProdukController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/hello', function(){
     return "Hallo Laravel!";
@@ -29,3 +30,6 @@ Route::get('/kelas/{kode}/mahasiswa/{nim}', function (string $kode, string $nim)
     return "Kelas {$kode}, NIM{$nim}";
 });
 
+Route::get('/produk', [ProdukController::class, 'index'])->name('produk.index');
+Route::get('/produk/{id}', [ProdukController::class, 'show'])->name('produk.show');
+Route::resource('produk', ProdukController::class);
